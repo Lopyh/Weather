@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JQuerry library -->
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
@@ -10,6 +13,25 @@
 </p>
 <input type="text" size="40">
 </p>
-<button type="submit">Get weather for city</button>
+<button onclick="myFunction()">Get weather for city</button>
+<script type="text/javascript">
+    function myFunction() {
+        //function which send ajax request to the server
+        $.ajax({
+            url : '/',
+            datatype : 'json',
+            type : "post",
+            contentType : "application/json",
+            data : JSON.stringify({
+                message : 'Hi there',
+                id : 1
+            }),
+            success : function(data) {
+                console.log(data);
+                $("#paragraph").text(data.message);
+            }
+        });
+    }
+</script>
 </body>
 </html>
